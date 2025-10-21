@@ -2,8 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\LoginController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\UserController;
+
+
+
+Route::get('/login', [LoginController::class, 'loginPage'])->name('login.page');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
