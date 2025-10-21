@@ -15,7 +15,8 @@ export default {
             dashboard: false,
             ecommerce: false,
             analytics: false,
-            role: false 
+            role: false,
+            user: false
         });
 
         const toggleDropdown = (menu) => {
@@ -91,7 +92,7 @@ export default {
                         </div>
                     </div>
 
-                    <!-- role & Role Management -->
+                    <!-- Role Management -->
                     <div class="relative">
                         <button @click="toggleDropdown('role')"
                             class="flex items-center justify-between w-full px-3 py-3 text-sm font-medium rounded-lg transition-colors text-gray-600 hover:text-gray-900 hover:bg-gray-50">
@@ -117,11 +118,47 @@ export default {
                             </svg>
                         </button>
 
-                        <!-- role Dropdown -->
+                        <!-- Role Dropdown -->
                         <div v-show="openDropdowns.role && !isCollapsed" class="mt-1 ml-8 space-y-1">
                             <a href="role"
                                 class="flex items-center px-3 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors">
                                 Role List
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- User Management -->
+                    <div class="relative">
+                        <button @click="toggleDropdown('user')"
+                            class="flex items-center justify-between w-full px-3 py-3 text-sm font-medium rounded-lg transition-colors text-gray-600 hover:text-gray-900 hover:bg-gray-50">
+                            <div class="flex items-center">
+                                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z">
+                                    </path>
+                                </svg>
+                                <span class="ml-3 transition-opacity duration-300"
+                                    :class="isCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'">
+                                    User Management
+                                </span>
+                            </div>
+                            <svg class="w-4 h-4 transition-transform duration-200"
+                                :class="openDropdowns.user ? 'rotate-180' : ''" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24" v-if="!isCollapsed">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+
+                        <!-- User Dropdown -->
+                        <div v-show="openDropdowns.user && !isCollapsed" class="mt-1 ml-8 space-y-1">
+                            <a href="user"
+                                class="flex items-center px-3 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors">
+                                User List
+                            </a>
+                            <a href="user/create"
+                                class="flex items-center px-3 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors">
+                                Create User
                             </a>
                         </div>
                     </div>

@@ -21,11 +21,14 @@ return new class extends Migration
             $table->string('address')->nullable(); 
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->rememberToken();
-            $table->foreignId('current_team_id')->nullable();
+            
+            $table->unsignedBigInteger('role_id');
+            $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
+            
             $table->enum('status',['Active','Inactive','Deleted'])->default('Inactive');
             $table->softDeletes();
             $table->timestamps();
+            $table->rememberToken();
         });
     }
 
