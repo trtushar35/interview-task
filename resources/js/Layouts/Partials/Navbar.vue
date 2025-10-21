@@ -1,6 +1,6 @@
 <script>
 import { ref } from 'vue';
-import { Link } from '@inertiajs/vue3';
+import { Link, router } from '@inertiajs/vue3';
 
 export default {
     name: 'Navbar',
@@ -17,8 +17,13 @@ export default {
     setup() {
         const userMenuOpen = ref(false);
 
+        const logout = () => {
+            router.get(route('backend.logout'));
+        };
+
         return {
-            userMenuOpen
+            userMenuOpen,
+            logout
         };
     }
 }
@@ -120,7 +125,8 @@ export default {
                             Settings
                             </Link>
                             <hr class="my-1 border-gray-200">
-                            <button class="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-50">
+                            <button @click="logout"
+                                class="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-50">
                                 Logout
                             </button>
                         </div>

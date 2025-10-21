@@ -71,7 +71,7 @@ const submit = () => {
                 </label>
                 <input id="email" v-model="form.email" name="email" type="email" autocomplete="email" required
                     placeholder="example@gmail.com"
-                    class="appearance-none block w-full px-4 py-3 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all text-sm" />
+                    class="appearance-none block w-full px-4 py-3 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm" />
                 <p v-if="form.errors.email" class="mt-2 text-sm text-red-600">
                     {{ form.errors.email }}
                 </p>
@@ -85,8 +85,8 @@ const submit = () => {
                 <div class="relative">
                     <input id="password" v-model="form.password" name="password"
                         :type="showPassword ? 'text' : 'password'" autocomplete="current-password" required
-                        placeholder="example@gmail.com"
-                        class="appearance-none block w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all text-sm" />
+                        placeholder="12345678"
+                        class="appearance-none block w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm" />
                     <button type="button" @click="showPassword = !showPassword"
                         class="absolute inset-y-0 right-0 pr-4 flex items-center">
                         <svg v-if="!showPassword" class="h-5 w-5 text-gray-400 hover:text-gray-600" fill="none"
@@ -112,7 +112,7 @@ const submit = () => {
             <div class="flex items-center justify-between pt-1">
                 <div class="flex items-center">
                     <input id="remember-me" v-model="form.remember" name="remember-me" type="checkbox"
-                        class="h-4 w-4 text-orange-500 focus:ring-orange-500 border-gray-300 rounded cursor-pointer" />
+                        class="h-4 w-4 text-blue-500 focus:ring-blue-500 border-gray-300 rounded cursor-pointer" />
                     <label for="remember-me" class="ml-2 block text-sm text-gray-700 cursor-pointer">
                         Remember me
                     </label>
@@ -136,25 +136,3 @@ const submit = () => {
         </form>
     </AuthenticationCard>
 </template>
-
-<style scoped>
-/* Custom focus styles for inputs */
-input:focus {
-    box-shadow: 0 0 0 3px rgba(251, 146, 60, 0.1);
-}
-
-input::placeholder {
-    color: #9CA3AF;
-}
-
-/* Checkbox custom styling */
-input[type="checkbox"]:checked {
-    background-color: #f97316;
-    border-color: #f97316;
-}
-
-input[type="checkbox"]:focus {
-    ring-color: #f97316;
-    box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
-}
-</style>

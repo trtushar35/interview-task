@@ -11,10 +11,17 @@ use App\Http\Controllers\Backend\UserController;
 Route::get('/login', [LoginController::class, 'loginPage'])->name('login.page');
 Route::post('/login', [LoginController::class, 'loginPost'])->name('login.post');
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::middleware(['admin'])->group(function () {
 
-//for role management
-Route::resource('role', RoleController::class);
+    //for dashboard
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-//for user management
-Route::resource('user', UserController::class);
+    // Role management routes
+    Route::resource('role', RoleController::class);
+
+    // User management routes
+    Route::resource('user', UserController::class);
+
+    // Logout route
+    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+});
