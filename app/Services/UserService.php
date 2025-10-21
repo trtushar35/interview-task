@@ -92,4 +92,12 @@ class UserService
     {
         return $this->userModel->with('role')->whereNull('deleted_at')->where('status', 'Active')->get();
     }
+
+    public function userExists($userName)
+    {
+        return $this->userModel->whereNull('deleted_at')
+            ->where(function ($q) use ($userName) {
+                $q->where('email', strtolower($userName));
+            })->first();
+    }
 }

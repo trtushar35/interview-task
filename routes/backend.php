@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\UserController;
 
 
 Route::get('/login', [LoginController::class, 'loginPage'])->name('login.page');
+Route::post('/login', [LoginController::class, 'loginPost'])->name('login.post');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
