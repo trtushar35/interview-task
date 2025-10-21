@@ -99,6 +99,8 @@ class RoleController extends Controller
                     ['link' => null, 'title' => 'Role Manage'],
                     ['link' => route('backend.role.create'), 'title' => 'Create Role'],
                 ],
+                'permissions' => $this->roleService->getPermissionsWithHierarchy(),
+                'selectedPermissions' => [],
             ]
         );
     }
@@ -136,7 +138,9 @@ class RoleController extends Controller
                         ['link' => route('backend.role.edit', $id), 'title' => 'Edit Role'],
                     ],
                     'role' => $role,
-                    'id' => $id
+                    'id' => $id,
+                    'permissions' => $this->roleService->getPermissionsWithHierarchy(),
+                    'selectedPermissions' => $role->permissions->pluck('id')->toArray(),
                 ]
             );
         } catch (\Exception $e) {
