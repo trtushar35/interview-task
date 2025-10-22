@@ -1,5 +1,6 @@
 <script>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
+import { usePage } from '@inertiajs/vue3';
 import Navbar from '@/Layouts/Partials/Navbar.vue';
 import Sidebar from '@/Layouts/Partials/Sidebar.vue';
 
@@ -12,15 +13,25 @@ export default {
     setup() {
         const sidebarOpen = ref(false);
         const sidebarCollapsed = ref(false);
+        const page = usePage();
+
+        // Menus are automatically passed through Inertia by the middleware
+        const menus = computed(() => page.props.menus || []);
 
         const toggleSidebarCollapse = () => {
             sidebarCollapsed.value = !sidebarCollapsed.value;
         };
 
+        const toggleMobileSidebar = () => {
+            sidebarOpen.value = !sidebarOpen.value;
+        };
+
         return {
             sidebarOpen,
             sidebarCollapsed,
-            toggleSidebarCollapse
+            toggleSidebarCollapse,
+            toggleMobileSidebar,
+            menus
         };
     }
 }
@@ -38,7 +49,9 @@ export default {
         <!-- Sidebar -->
         <Sidebar 
             :isCollapsed="sidebarCollapsed" 
-            @toggle-collapse="toggleSidebarCollapse" 
+            :isMobileOpen="sidebarOpen"
+            @toggle-collapse="toggleSidebarCollapse"
+            @toggle-sidebar="sidebarOpen = false"
         />
         
         <!-- Main Content Area -->
@@ -46,7 +59,7 @@ export default {
             <!-- Navbar -->
             <Navbar 
                 :sidebarCollapsed="sidebarCollapsed"
-                @toggle-sidebar="sidebarOpen = !sidebarOpen" 
+                @toggle-sidebar="toggleMobileSidebar" 
                 @toggle-collapse="toggleSidebarCollapse"
             />
             
