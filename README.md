@@ -16,7 +16,6 @@ A complete role-based authentication system built with Laravel, Vue.js, and Iner
 - **Backend**: Laravel 12
 - **Frontend**: Vue.js 3, Inertia.js
 - **Styling**: Tailwind CSS
-- **Authentication**: JWT Tokens
 - **Database**: MySQL
 
 ## 📋 Prerequisites
