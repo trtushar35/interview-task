@@ -15,6 +15,11 @@ class RoleController extends Controller
     public function __construct(RoleService $roleService)
     {
         $this->roleService = $roleService;
+
+        $this->middleware('permission:role-view')->only(['index']);
+        $this->middleware('permission:role-create')->only(['create', 'store']);
+        $this->middleware('permission:role-edit')->only(['edit', 'update']);
+        $this->middleware('permission:role-delete')->only(['destroy']);
     }
 
     public function index()
@@ -22,14 +27,14 @@ class RoleController extends Controller
         return Inertia::render(
             'Backend/Role/Index',
             [
-                'pageTitle' => fn () => 'Role List',
-                'breadcrumbs' => fn () => [
+                'pageTitle' => fn() => 'Role List',
+                'breadcrumbs' => fn() => [
                     ['link' => null, 'title' => 'Role Manage'],
                     ['link' => route('backend.role.index'), 'title' => 'Role List'],
                 ],
-                'tableHeaders' => fn () => $this->getTableHeaders(),
-                'dataFields' => fn () => $this->dataFields(),
-                'datas' => fn () => $this->getDatas(),
+                'tableHeaders' => fn() => $this->getTableHeaders(),
+                'dataFields' => fn() => $this->dataFields(),
+                'datas' => fn() => $this->getDatas(),
                 'filters' => request()->only(['numOfData', 'name']),
             ]
         );
@@ -94,8 +99,8 @@ class RoleController extends Controller
         return Inertia::render(
             'Backend/Role/Form',
             [
-                'pageTitle' => fn () => 'Create Role',
-                'breadcrumbs' => fn () => [
+                'pageTitle' => fn() => 'Create Role',
+                'breadcrumbs' => fn() => [
                     ['link' => null, 'title' => 'Role Manage'],
                     ['link' => route('backend.role.create'), 'title' => 'Create Role'],
                 ],
@@ -109,9 +114,9 @@ class RoleController extends Controller
     {
         try {
             $this->roleService->store($request->validated());
-            
+
             return redirect()->route('backend.role.index')
-                ->with('success', 'Role created successfully!');
+                ->with('successMessage', 'Role created successfully!');
                 
         } catch (\Exception $e) {
             return redirect()->back()
@@ -128,12 +133,12 @@ class RoleController extends Controller
     {
         try {
             $role = $this->roleService->findById($id);
-            
+
             return Inertia::render(
                 'Backend/Role/Form',
                 [
-                    'pageTitle' => fn () => 'Edit Role',
-                    'breadcrumbs' => fn () => [
+                    'pageTitle' => fn() => 'Edit Role',
+                    'breadcrumbs' => fn() => [
                         ['link' => null, 'title' => 'Role Manage'],
                         ['link' => route('backend.role.edit', $id), 'title' => 'Edit Role'],
                     ],
@@ -153,10 +158,9 @@ class RoleController extends Controller
     {
         try {
             $this->roleService->update($id, $request->validated());
-            
+
             return redirect()->route('backend.role.index')
-                ->with('success', 'Role updated successfully!');
-                
+                ->with('successMessage', 'Role updated successfully!');
         } catch (\Exception $e) {
             return redirect()->back()
                 ->with('errorMessage', 'Failed to update role: ' . $e->getMessage());
@@ -167,9 +171,8 @@ class RoleController extends Controller
     {
         try {
             $this->roleService->forceDelete($id);
-            
-            return back()->with('success', 'Role deleted successfully!');
-                
+
+            return back()->with('successMessage', 'Role deleted successfully!');
         } catch (\Exception $e) {
 
             return redirect()->back()

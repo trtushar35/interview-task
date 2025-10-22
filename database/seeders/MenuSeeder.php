@@ -44,7 +44,7 @@ class MenuSeeder extends Seeder
         return [
             [
                 'name' => 'Dashboard',
-                'icon' => '',
+                'icon' => 'bi-speedometer2',
                 'route' => null,
                 'description' => null,
                 'sorting' => 1,
@@ -53,8 +53,8 @@ class MenuSeeder extends Seeder
                 'children' => [
                     [
                         'name' => 'Overview',
-                        'icon' => 'list',
-                        'route' => '',
+                        'icon' => 'bi-house-door',
+                        'route' => 'backend.dashboard',
                         'description' => null,
                         'sorting' => 1,
                         'permission_name' => 'overview-dashboard',
@@ -62,7 +62,7 @@ class MenuSeeder extends Seeder
                     ],
                     [
                         'name' => 'Analytics',
-                        'icon' => 'list',
+                        'icon' => 'bi-graph-up-arrow',
                         'route' => '',
                         'description' => null,
                         'sorting' => 2,
@@ -71,7 +71,7 @@ class MenuSeeder extends Seeder
                     ],
                     [
                         'name' => 'Reports',
-                        'icon' => 'list',
+                        'icon' => 'bi-bar-chart-line',
                         'route' => '',
                         'description' => null,
                         'sorting' => 3,
@@ -80,10 +80,10 @@ class MenuSeeder extends Seeder
                     ],
                 ],
             ],
-            
+
             [
                 'name' => 'Role Management',
-                'icon' => '',
+                'icon' => 'bi-shield-lock',
                 'route' => null,
                 'description' => null,
                 'sorting' => 2,
@@ -92,8 +92,8 @@ class MenuSeeder extends Seeder
                 'children' => [
                     [
                         'name' => 'Role List',
-                        'icon' => 'list',
-                        'route' => '',
+                        'icon' => 'bi-list-check',
+                        'route' => 'backend.role.index',
                         'description' => null,
                         'sorting' => 1,
                         'permission_name' => 'role-list',
@@ -101,20 +101,20 @@ class MenuSeeder extends Seeder
                     ],
                 ],
             ],
-            
+
             [
                 'name' => 'User Management',
-                'icon' => '',
+                'icon' => 'bi-people-fill',
                 'route' => null,
                 'description' => null,
-                'sorting' => 2,
+                'sorting' => 3,
                 'permission_name' => 'user-management',
                 'status' => 'Active',
                 'children' => [
                     [
                         'name' => 'User List',
-                        'icon' => 'list',
-                        'route' => '',
+                        'icon' => 'bi-person-badge',
+                        'route' => 'backend.user.index',
                         'description' => null,
                         'sorting' => 1,
                         'permission_name' => 'user-list',
@@ -122,7 +122,7 @@ class MenuSeeder extends Seeder
                     ],
                 ],
             ],
-            
+
         ];
     }
 }

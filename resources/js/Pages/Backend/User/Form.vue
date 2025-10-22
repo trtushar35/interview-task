@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue';
 import { useForm, usePage, router } from '@inertiajs/vue3';
 import BackendLayout from '@/Layouts/BackendLayout.vue';
+import AlertMessage from '../../../Components/AlertMessage.vue';
 
 const props = defineProps({
     user: Object,

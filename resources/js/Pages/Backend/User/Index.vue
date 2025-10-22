@@ -4,6 +4,7 @@ import BackendLayout from '@/Layouts/BackendLayout.vue';
 import BaseTable from '@/Components/BaseTable.vue';
 import Pagination from '@/Components/Pagination.vue';
 import { router } from '@inertiajs/vue3';
+import AlertMessage from '@/Components/AlertMessage.vue';
 
 let props = defineProps({
     filters: Object,
@@ -39,6 +40,11 @@ const resetFilter = () => {
     <BackendLayout>
         <div class="w-full p-6 duration-1000 ease-in-out bg-white rounded-xl shadow-lg">
 
+            <div class="mb-6">
+                <AlertMessage />
+            </div>
+
+            
             <!-- Header Section -->
             <div class="flex flex-col gap-4 mb-6 md:flex-row md:items-center md:justify-between">
                 <div>

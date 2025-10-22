@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 
 class UserService
 {
-     protected $userModel;
+    protected $userModel;
 
     public function __construct(User $userModel)
     {
@@ -32,7 +32,6 @@ class UserService
 
     public function create(array $data)
     {
-        // Hash password if provided
         if (isset($data['password'])) {
             $data['password'] = Hash::make($data['password']);
         }
@@ -44,7 +43,6 @@ class UserService
     {
         $dataInfo = $this->userModel->findOrFail($id);
 
-        // Hash password if provided
         if (isset($data['password'])) {
             $data['password'] = Hash::make($data['password']);
         } else {
@@ -61,7 +59,6 @@ class UserService
         $dataInfo = $this->userModel->find($id);
 
         if (!empty($dataInfo)) {
-            // Delete photo if exists
             if (!empty($dataInfo->photo) && Storage::disk('public')->exists($dataInfo->photo)) {
                 Storage::disk('public')->delete($dataInfo->photo);
             }
@@ -99,5 +96,22 @@ class UserService
             ->where(function ($q) use ($userName) {
                 $q->where('email', strtolower($userName));
             })->first();
+    }
+
+    public function hasPermission(User $user, string $permissionName): bool
+    {
+        // Admin has all permissions
+        if ($user->role->name === 'Admin') {
+            return true;
+        }
+
+        if (!$user->relationLoaded('role.permissions')) {
+            $user->load('role.permissions');
+        }
+
+        return $user->role->permissions
+            ->where('name', $permissionName)
+            ->where('status', 'Active')
+            ->isNotEmpty();
     }
 }

@@ -19,6 +19,11 @@ class UserController extends Controller
     {
         $this->userService = $userService;
         $this->roleService = $roleService;
+
+        $this->middleware('permission:user-view')->only(['index']);
+        $this->middleware('permission:user-create')->only(['create', 'store']);
+        $this->middleware('permission:user-edit')->only(['edit', 'update']);
+        $this->middleware('permission:user-delete')->only(['destroy']);
     }
 
     public function index()
@@ -149,7 +154,7 @@ class UserController extends Controller
             $dataInfo = $this->userService->create($data);
 
             return redirect()->route('backend.user.index')
-                ->with('success', 'User created successfully!');
+                ->with('successMessage', 'User created successfully!');
         } catch (\Exception $e) {
             return redirect()->back()
                 ->with('errorMessage', 'Failed to create user: ' . $e->getMessage());
@@ -213,7 +218,7 @@ class UserController extends Controller
             $this->userService->update($id, $data);
 
             return redirect()->route('backend.user.index')
-                ->with('success', 'User updated successfully!');
+                ->with('successMessage', 'User updated successfully!');
         } catch (\Exception $e) {
             return redirect()->back()
                 ->with('errorMessage', 'Failed to update user: ' . $e->getMessage());
@@ -231,8 +236,8 @@ class UserController extends Controller
 
             $this->userService->delete($id);
 
-            return redirect()->route('backend.user.index')
-                ->with('success', 'User deleted successfully!');
+            return redirect()->back()
+                ->with('successMessage', 'User deleted successfully!');
         } catch (\Exception $e) {
             return redirect()->back()
                 ->with('errorMessage', 'Failed to delete user: ' . $e->getMessage());

@@ -25,6 +25,7 @@ class Menu extends Model
     protected $casts = [
         'sorting' => 'integer',
     ];
+    protected $appends = ['href'];
 
     /**
      * Get the parent menu
@@ -64,5 +65,10 @@ class Menu extends Model
     public function scopeOrdered($query)
     {
         return $query->orderBy('sorting');
+    }
+
+    public function getHrefAttribute()
+    {
+        return $this->route ? route($this->route) : '#';
     }
 }

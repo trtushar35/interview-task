@@ -59,7 +59,6 @@ class PermissionSeeder extends Seeder
                             ['name' => 'role-view'],
                             ['name' => 'role-create'],
                             ['name' => 'role-edit'],
-                            ['name' => 'role-update'],
                             ['name' => 'role-delete'],
                         ]
                     ],
@@ -76,7 +75,6 @@ class PermissionSeeder extends Seeder
                             ['name' => 'user-view'],
                             ['name' => 'user-create'],
                             ['name' => 'user-edit'],
-                            ['name' => 'user-update'],
                             ['name' => 'user-delete'],
                         ]
                     ],
