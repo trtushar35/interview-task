@@ -4,7 +4,7 @@ A complete role-based authentication system built with Laravel, Vue.js, and Iner
 
 ## 🚀 Features
 
-- **Authentication System**: Login/logout functionality with JWT tokens
+- **Authentication System**: Login/logout functionality
 - **Role-Based Access Control**: Custom role and permission management
 - **User Management**: Complete CRUD operations for users
 - **Role Management**: Create, read, update, and delete roles with permissions
@@ -28,11 +28,12 @@ A complete role-based authentication system built with Laravel, Vue.js, and Iner
 ## ⚙️ Installation
 
 ### 1. Clone the Repository
-### 2. composer update
-### 3. npm install
-### 4. create and connect database
-### 5. php artisan key:generate
-### 6. php artisan migrate:fresh --seed
+### 2. cp .env.example .env
+### 3. composer update
+### 4. npm install
+### 5. create and connect database
+### 6. php artisan key:generate
+### 7. php artisan migrate:fresh --seed
 
 
 ## ▶️ Run the project 
